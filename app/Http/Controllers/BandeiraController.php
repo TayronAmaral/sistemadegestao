@@ -16,7 +16,7 @@ class BandeiraController extends Controller
         return view('bandeiras.create', compact('grupoEconomicos'));
     }
 
-    // Método para listar todas as bandeiras
+    
     public function index()
     {
         $bandeiras = Bandeira::all();
