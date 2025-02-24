@@ -47,7 +47,9 @@
                                     <td class="px-4 py-2 border">{{ $unidade->id }}</td>
                                     <td class="px-4 py-2 border">{{ $unidade->nome_fantasia }}</td>
                                     <td class="px-4 py-2 border">{{ $unidade->razao_social }}</td>
-                                    <td class="px-4 py-2 border">{{ $unidade->cnpj }}</td>
+                                    <td class="px-4 py-2 border">
+                                        {{ preg_replace("/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/", "$1.$2.$3/$4-$5", $unidade->cnpj) }}
+                                    </td>
                                     <td class="px-4 py-2 border">{{ $unidade->bandeira->nome ?? 'Sem Bandeira' }}</td>
                                     <td class="px-4 py-2 border">{{ $unidade->created_at->format('d/m/Y H:i') }}</td>
                                     <td class="px-4 py-2 border">{{ $unidade->updated_at->format('d/m/Y H:i') }}</td>

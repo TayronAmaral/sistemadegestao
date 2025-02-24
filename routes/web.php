@@ -12,15 +12,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Protegendo o dashboard e algumas páginas com autenticação
+// Protegendo o dashboard e algumas páginas com autenticação e verificação de e-mail
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::get('/grupoeconomico', [GrupoEconomicoController::class, 'index'])->name('grupoeconomico');
-    Route::get('/bandeiras', [BandeiraController::class, 'index'])->name('bandeiras.index');
 });
 
-// Grupo de rotas protegidas por autenticação
+// Grupo de rotas protegidas apenas por autenticação
 Route::middleware('auth')->group(function () {
+    // Rotas de perfil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -31,9 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('bandeiras', BandeiraController::class);
     Route::resource('unidades', UnidadeController::class);
     Route::resource('colaboradores', ColaboradorController::class);
-    
-    route('colaborador.update', ['colaborador' => $colaborador->id]);
-
 });
 
 // Inclui as rotas de autenticação padrão do Laravel

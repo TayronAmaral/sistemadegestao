@@ -33,6 +33,9 @@
                             <tr class="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
                                 <th class="border border-gray-300 dark:border-gray-600 px-4 py-2">ID</th>
                                 <th class="border border-gray-300 dark:border-gray-600 px-4 py-2">Nome</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2">Grupo Econômico</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2">Criado em</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2">Última Atualização</th>
                                 <th class="border border-gray-300 dark:border-gray-600 px-4 py-2">Ações</th>
                             </tr>
                         </thead>
@@ -41,6 +44,15 @@
                             <tr class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                                 <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">{{ $bandeira->id }}</td>
                                 <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ $bandeira->nome }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                                    {{ $bandeira->grupoEconomico->nome ?? 'N/A' }}
+                                </td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                                    {{ \Carbon\Carbon::parse($bandeira->created_at)->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i') }}
+                                </td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
+                                    {{ \Carbon\Carbon::parse($bandeira->updated_at)->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i') }}
+                                </td>
                                 <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 flex justify-center gap-2">
                                     <a href="{{ route('bandeiras.edit', $bandeira->id) }}" 
                                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
