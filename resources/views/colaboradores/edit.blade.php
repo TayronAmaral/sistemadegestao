@@ -27,7 +27,7 @@
                 @endif
 
                 {{-- Formulário de edição --}}
-                <form action="{{ route('colab.update', $colaborador->id) }}" method="POST" class="space-y-4">
+                <form action="{{ route('colaboradores.update', $colaborador->id) }}" method="POST" class="space-y-4">
                     @csrf
                     @method('PUT')
 
@@ -59,8 +59,8 @@
                             <option value="">Selecione uma unidade</option>
                             @foreach($unidades as $unidade)
                                 <option value="{{ $unidade->id }}" 
-                                    {{ old('unidade_id', $colaborador->unidade_id ?? '') == $unidade->id ? 'selected' : '' }}>
-                                    {{ $unidade->nome }}
+                                    {{ old('unidade_id', $colaborador->unidade_id ?? '') == $unidade->id ? 'selected' : '' }} >
+                                    {{ $unidade->nome_fantasia}}
                                 </option>
                             @endforeach
                         </select>
@@ -71,7 +71,7 @@
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
                             Atualizar Colaborador
                         </button>
-                        <form action="{{ route('colab.destroy', $colaborador->id) }}" method="POST" 
+                        <form action="{{ route('colaboradores.destroy', $colaborador->id) }}" method="POST" 
                               onsubmit="return confirm('Tem certeza que deseja excluir este colaborador?');">
                             @csrf
                             @method('DELETE')

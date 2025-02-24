@@ -15,50 +15,56 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
 
-            <!-- Título da Lista de Colaboradores -->
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Lista de Colaboradores</h3>   
+                <!-- Título da Lista de Colaboradores -->
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Lista de Colaboradores</h3>   
 
-            <!-- Botão para Adicionar Colaborador -->
-                <div class="flex justify-end mb-4">
+                <!-- Botões de Ação -->
+                <div class="flex justify-end space-x-2 mb-4">
                     <a href="{{ route('colaboradores.create') }}" 
                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
                         <i class="fas fa-user-plus"></i> Novo Colaborador
+                    </a>
+                    <a href="{{ route('relatorios.colaboradores') }}" 
+                       class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
+                        <i class="fas fa-file-alt"></i> Relatórios
                     </a>
                 </div>
 
                 <!-- Tabela com os Colaboradores -->
                 <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-200 dark:border-gray-700">
+                    <table class="w-full border-collapse border border-gray-200 dark:border-gray-700 text-sm">
                         <thead>
-                            <tr class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-white">
+                            <tr class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-white text-left">
                                 <th class="px-4 py-2 border">Nome</th>
                                 <th class="px-4 py-2 border">E-mail</th>
                                 <th class="px-4 py-2 border">CPF</th>
                                 <th class="px-4 py-2 border">Unidade</th>
-                                <th class="px-4 py-2 border">Ações</th>
+                                <th class="px-4 py-2 border text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($colaboradores as $colaborador)
                                 <tr class="border text-gray-700 dark:text-gray-300 dark:border-gray-600">
-                                    <td class="px-4 py-2 border">{{ $colaborador->nome }}</td>
-                                    <td class="px-4 py-2 border">{{ $colaborador->email }}</td>
-                                    <td class="px-4 py-2 border">{{ $colaborador->cpf }}</td>
-                                    <td class="px-4 py-2 border">{{ $colaborador->unidade->nome_fantasia ?? 'Sem Unidade' }}</td>
-                                    <td class="px-4 py-2 border flex gap-2 justify-center">
-                                        <a href="{{ route('colaboradores.edit', $colaborador) }}" 
-                                           class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
-                                            <i class="fas fa-edit"></i> Editar
-                                        </a>
-                                        <form action="{{ route('colaboradores.destroy', $colaborador->id) }}" method="POST"
-                                              onsubmit="return confirmDelete();">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" 
-                                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
-                                                <i class="fas fa-trash"></i> Excluir
-                                            </button>
-                                        </form>
+                                    <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->nome }}</td>
+                                    <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->email }}</td>
+                                    <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->cpf }}</td>
+                                    <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->unidade->nome_fantasia ?? 'Sem Unidade' }}</td>
+                                    <td class="px-4 py-2 border text-center">
+                                        <div class="flex items-center justify-center space-x-2">
+                                            <a href="{{ route('colaboradores.edit', $colaborador) }}" 
+                                               class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </a>
+                                            <form action="{{ route('colaboradores.destroy', $colaborador->id) }}" method="POST"
+                                                  onsubmit="return confirmDelete();" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" 
+                                                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
+                                                    <i class="fas fa-trash"></i> Excluir
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
@@ -88,5 +94,4 @@
             }
         </script>
     @endpush
-
 @endsection
