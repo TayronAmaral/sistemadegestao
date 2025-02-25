@@ -1,29 +1,37 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
+@section('content')
+<div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 text-center">Editar Perfil</h2>
+
+    <form action="{{ route('profile.update') }}" method="POST" class="mt-6 space-y-4">
+        @csrf
+        @method('PATCH')
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Nome -->
+            <div>
+                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium">Nome:</label>
+                <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" required
+                    class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white 
+                    focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition duration-200 outline-none">
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
+            <!-- E-mail -->
+            <div>
+                <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium">E-mail:</label>
+                <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" required 
+                    class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white 
+                    focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition duration-200 outline-none">
             </div>
         </div>
-    </div>
-</x-app-layout>
+
+        <div class="flex justify-end mt-6">
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md transition duration-200">
+                Salvar
+            </button>
+        </div>
+    </form>
+</div>
+@endsection

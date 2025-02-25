@@ -13,7 +13,7 @@ class Bandeira extends Model implements Auditable
 
     protected $fillable = [
         'nome', 
-        'grupo_economico_id', // FK que vai se relacionar com a tabela grupo_economico
+        'grupo_economico_id',
     ];
 
     public function grupoEconomico()
