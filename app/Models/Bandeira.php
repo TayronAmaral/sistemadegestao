@@ -16,6 +16,8 @@ class Bandeira extends Model implements Auditable
         'grupo_economico_id',
     ];
 
+    
+
     public function grupoEconomico()
     {
         return $this->belongsTo(GrupoEconomico::class, 'grupo_economico_id');
