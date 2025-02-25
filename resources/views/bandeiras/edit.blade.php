@@ -14,21 +14,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-
-                <!-- Formulário de edição da Bandeira -->
+                
                 <form action="{{ route('bandeiras.update', $bandeira->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
-                    <!-- Campo Nome -->
+                    
                     <div class="mb-4">
                         <label for="nome" class="block text-gray-700 dark:text-gray-300">Nome:</label>
                         <input type="text" id="nome" name="nome" 
                                value="{{ old('nome', $bandeira->nome) }}" 
                                class="w-full p-2 border rounded dark:bg-gray-700 dark:text-white" required>
                     </div>
-
-                    <!-- Seleção de Grupo Econômico -->
+                    
                     <div class="mb-4">
                         <label for="grupo_economico_id" class="block text-gray-700 dark:text-gray-300">
                             Grupo Econômico:
@@ -43,8 +40,7 @@
                             @endforeach
                         </select>
                     </div>
-
-                    <!-- Botão de Atualizar -->
+                    
                     <div class="flex justify-end">
                         <button type="submit" 
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">

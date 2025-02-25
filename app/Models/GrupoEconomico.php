@@ -11,7 +11,7 @@ class GrupoEconomico extends Model implements Auditable
 {
     use HasFactory, AuditingTrait;
 
-    protected $table = 'grupos_economicos'; // Define explicitamente a tabela
+    protected $table = 'grupos_economicos'; 
 
-    protected $fillable = ['nome']; // Permite atribuição em massa
+    protected $fillable = ['nome']; 
 }

@@ -14,19 +14,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-
-            <!-- Título da Lista de Unidades -->
+            
             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Lista de Unidades</h3>
-
-            <!-- Botão para Adicionar Unidade -->
+           
                 <div class="flex justify-end mb-4">
                     <a href="{{ route('unidades.create') }}" 
                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
                         Adicionar Unidade
                     </a>
                 </div>
-
-                <!-- Tabela com as Unidades Existentes -->
+                
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse border border-gray-200 dark:border-gray-700">
                         <thead>
@@ -44,37 +41,38 @@
                         <tbody>
                             @foreach ($unidades as $unidade)
                                 <tr class="border text-gray-700 dark:text-gray-300 dark:border-gray-600">
-                                    <td class="px-4 py-2 border">{{ $unidade->id }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $unidade->id }}</td>
                                     <td class="px-4 py-2 border">{{ $unidade->nome_fantasia }}</td>
                                     <td class="px-4 py-2 border">{{ $unidade->razao_social }}</td>
                                     <td class="px-4 py-2 border">
                                         {{ preg_replace("/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/", "$1.$2.$3/$4-$5", $unidade->cnpj) }}
                                     </td>
                                     <td class="px-4 py-2 border">{{ $unidade->bandeira->nome ?? 'Sem Bandeira' }}</td>
-                                    <td class="px-4 py-2 border">{{ $unidade->created_at->format('d/m/Y H:i') }}</td>
-                                    <td class="px-4 py-2 border">{{ $unidade->updated_at->format('d/m/Y H:i') }}</td>
-                                    <td class="px-4 py-2 border flex gap-2">
-                                        <a href="{{ route('unidades.edit', $unidade->id) }}" 
-                                           class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
-                                            Editar
-                                        </a>
-                                        <form action="{{ route('unidades.destroy', $unidade->id) }}" method="POST"
-                                              onsubmit="return confirm('Tem certeza que deseja excluir esta unidade?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" 
-                                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
-                                                Excluir
-                                            </button>
-                                        </form>
+                                    <td class="px-4 py-2 border text-center">{{ $unidade->created_at->format('d/m/Y H:i') }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $unidade->updated_at->format('d/m/Y H:i') }}</td>
+                                    <td class="px-4 py-2 border text-center">
+                                        <div class="flex flex-wrap justify-center gap-2">
+                                            <a href="{{ route('unidades.edit', $unidade->id) }}" 
+                                               class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
+                                                Editar
+                                            </a>
+                                            <form action="{{ route('unidades.destroy', $unidade->id) }}" method="POST"
+                                                  onsubmit="return confirm('Tem certeza que deseja excluir esta unidade?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" 
+                                                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg shadow-md transition-all">
+                                                    Excluir
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Paginação -->
+               
                 <div class="mt-4">
                     {{ $unidades->links() }}
                 </div>

@@ -14,19 +14,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-
-                <!-- Título da Lista de Bandeiras -->
+                
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Lista de Bandeiras</h3>
-
-                <!-- Botão para adicionar nova bandeira -->
+                
                 <div class="mb-4 flex justify-end">
                     <a href="{{ route('bandeiras.create') }}" 
                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all">
                         Criar Nova Bandeira
                     </a>
                 </div>
-
-                <!-- Tabela de Bandeiras -->
+                
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse border border-gray-300 dark:border-gray-700">
                         <thead>

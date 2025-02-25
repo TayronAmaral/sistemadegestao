@@ -7,8 +7,7 @@ use App\Models\GrupoEconomico;
 use Illuminate\Http\Request;
 
 class BandeiraController extends Controller
-{
-    // Método para exibir o formulário de criação
+{    
     public function create()
     {
         $grupoEconomicos = GrupoEconomico::all(); // Nome corrigido
@@ -23,26 +22,24 @@ class BandeiraController extends Controller
         
         return view('bandeiras.index', compact('bandeiras'));
     }
-
-    // Método para armazenar uma bandeira
+    
     public function store(Request $request)
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'grupo_economico_id' => 'required|exists:grupos_economicos,id', // Correção no nome da chave
+            'grupo_economico_id' => 'required|exists:grupos_economicos,id', 
         ]);
 
         Bandeira::create([
             'nome' => $request->nome,
-            'grupo_economico_id' => $request->grupo_economico_id, // Correção no nome
+            'grupo_economico_id' => $request->grupo_economico_id, 
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         return redirect()->route('bandeiras.index')->with('success', 'Bandeira criada com sucesso!');
     }
-
-    // Método para exibir o formulário de edição
+    
     public function edit($id)
     {
         $bandeira = Bandeira::findOrFail($id);
@@ -51,26 +48,24 @@ class BandeiraController extends Controller
         return view('bandeiras.edit', compact('bandeira', 'grupoEconomicos'));
     }
 
-    // Método para atualizar uma bandeira
     public function update(Request $request, $id)
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'grupo_economico_id' => 'required|exists:grupos_economicos,id', // Correção no nome da chave
+            'grupo_economico_id' => 'required|exists:grupos_economicos,id', 
         ]);
 
         $bandeira = Bandeira::findOrFail($id);
         
         $bandeira->update([
             'nome' => $request->nome,
-            'grupo_economico_id' => $request->grupo_economico_id, // Correção no nome
+            'grupo_economico_id' => $request->grupo_economico_id, 
         ]);
 
         return redirect()->route('bandeiras.index')->with('success', 'Bandeira atualizada com sucesso!');
     }
 
-    // Método para excluir uma bandeira
-    public function destroy($id)
+        public function destroy($id)
     {
         $bandeira = Bandeira::findOrFail($id);
         $bandeira->delete();

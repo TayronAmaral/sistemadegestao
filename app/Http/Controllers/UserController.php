@@ -7,26 +7,20 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    /**
-     * Exibir uma lista de usuários.
-     */
+    
     public function index()
 {
     $users = User::all();
     return view('dashboard', compact('users'));
 }
 
-    /**
-     * Mostrar o formulário para criar um novo usuário.
-     */
+   
     public function create()
     {
         return view('users.create');
     }
 
-    /**
-     * Armazenar um novo usuário no banco de dados.
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -44,25 +38,19 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso!');
     }
 
-    /**
-     * Exibir um usuário específico.
-     */
+    
     public function show(User $user)
     {
         return view('users.show', compact('user'));
     }
 
-    /**
-     * Mostrar o formulário para editar um usuário.
-     */
+    
     public function edit(User $user)
     {
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Atualizar os dados de um usuário.
-     */
+    
     public function update(Request $request, User $user)
     {
         $request->validate([
@@ -78,9 +66,7 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso!');
     }
 
-    /**
-     * Excluir um usuário do banco de dados.
-     */
+    
     public function destroy(User $user)
     {
         $user->delete();

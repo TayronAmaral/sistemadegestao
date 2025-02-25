@@ -9,15 +9,14 @@
         @method('PATCH')
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Nome -->
+            
             <div>
                 <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium">Nome:</label>
                 <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" required
                     class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white 
                     focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition duration-200 outline-none">
             </div>
-
-            <!-- E-mail -->
+           
             <div>
                 <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium">E-mail:</label>
                 <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" required 

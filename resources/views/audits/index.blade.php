@@ -14,11 +14,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-
-                <!-- Título -->
+                
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Registros de Auditoria</h3>   
-
-                <!-- Tabela com os registros de auditoria -->
+                
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse border border-gray-200 dark:border-gray-700 text-sm">
                         <thead>
@@ -54,8 +52,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Paginação -->
+               
                 <div class="mt-4">
                     {{ $audits->links() }}
                 </div>

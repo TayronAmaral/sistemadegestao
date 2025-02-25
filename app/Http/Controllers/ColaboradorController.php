@@ -43,11 +43,9 @@ class ColaboradorController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Buscar o colaborador pelo ID
+    {        
         $colaborador = Colaborador::findOrFail($id);
-    
-        // Validar os dados antes da atualização
+            
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
             'email' => [
@@ -63,11 +61,9 @@ class ColaboradorController extends Controller
             ],
             'unidade_id' => 'required|exists:unidades,id',
         ]);
-    
-        // Atualizar os dados do colaborador
+            
         $colaborador->update($validated);
-    
-        // Redirecionar com mensagem de sucesso
+            
         return redirect()->route('colaboradores.index')->with('success', 'Colaborador atualizado com sucesso!');
     }
     

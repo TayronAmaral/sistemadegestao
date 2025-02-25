@@ -3,7 +3,7 @@
 @section('content')
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <!-- Cabeçalho -->
+        
         <header class="bg-white dark:bg-gray-800 shadow mb-6">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -11,8 +11,7 @@
                 </h2>
             </div>
         </header>
-
-        <!-- Formulário de Filtro -->
+        
         <form method="GET" action="{{ route('relatorios.colaboradores') }}" class="mb-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
@@ -47,8 +46,7 @@
                 </a>
             </div>
         </form>
-
-        <!-- Botões de Exportação -->
+        
         <div class="flex justify-end mb-6 space-x-4">
             <a href="{{ route('relatorios.colaboradores.export.excel') }}" 
                 class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg shadow-md transition-all">
@@ -60,8 +58,7 @@
                 <i class="fas fa-file-pdf"></i> Exportar para PDF
             </a>
         </div>
-
-        <!-- Tabela de Resultados -->
+        
         <div class="bg-transparent p-4 rounded shadow-md">
             <div class="overflow-x-auto">
                 <table class="w-full table-auto border-collapse">
@@ -93,8 +90,7 @@
                     </tbody>
                 </table>
             </div>
-
-            <!-- Paginação -->
+           
             <div class="mt-4">
                 {{ $colaboradores->appends(request()->query())->links() }}
             </div>

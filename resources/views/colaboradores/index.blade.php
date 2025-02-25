@@ -14,11 +14,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-
-                <!-- Título da Lista de Colaboradores -->
+                
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Lista de Colaboradores</h3>   
-
-                <!-- Botões de Ação -->
+               
                 <div class="flex justify-end space-x-2 mb-4">
                     <a href="{{ route('colaboradores.create') }}" 
                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
@@ -29,8 +27,7 @@
                         <i class="fas fa-file-alt"></i> Relatórios
                     </a>
                 </div>
-
-                <!-- Tabela com os Colaboradores -->
+                
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse border border-gray-200 dark:border-gray-700 text-sm">
                         <thead>
