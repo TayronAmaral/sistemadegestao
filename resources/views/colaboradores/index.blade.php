@@ -47,7 +47,9 @@
                                 <tr class="border text-gray-700 dark:text-gray-300 dark:border-gray-600">
                                     <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->nome }}</td>
                                     <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->email }}</td>
-                                    <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->cpf }}</td>
+                                    <td class="px-4 py-2 border whitespace-nowrap">
+                                        {{ preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "$1.$2.$3-$4", $colaborador->cpf) }}
+                                    </td>
                                     <td class="px-4 py-2 border whitespace-nowrap">{{ $colaborador->unidade->nome_fantasia ?? 'Sem Unidade' }}</td>
                                     <td class="px-4 py-2 border text-center">
                                         <div class="flex items-center justify-center space-x-2">

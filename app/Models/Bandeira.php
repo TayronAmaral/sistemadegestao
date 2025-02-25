@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditingTrait;
 
-class Bandeira extends Model
+class Bandeira extends Model implements Auditable
 {
-    use HasFactory;
+    use HasFactory, AuditingTrait;
 
     protected $fillable = [
-        'nome', // Permite o preenchimento do campo 'nome'
+        'nome', 
         'grupo_economico_id', // FK que vai se relacionar com a tabela grupo_economico
     ];
 

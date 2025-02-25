@@ -59,27 +59,18 @@
                             <option value="">Selecione uma unidade</option>
                             @foreach($unidades as $unidade)
                                 <option value="{{ $unidade->id }}" 
-                                    {{ old('unidade_id', $colaborador->unidade_id ?? '') == $unidade->id ? 'selected' : '' }} >
-                                    {{ $unidade->nome_fantasia}}
+                                    {{ old('unidade_id', $colaborador->unidade_id) == $unidade->id ? 'selected' : '' }} >
+                                    {{ $unidade->nome_fantasia }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="flex justify-between">
+                    <div class="flex justify-end">
                         <button type="submit"
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
                             Atualizar Colaborador
                         </button>
-                        <form action="{{ route('colaboradores.destroy', $colaborador->id) }}" method="POST" 
-                              onsubmit="return confirm('Tem certeza que deseja excluir este colaborador?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" 
-                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition-all">
-                                Excluir
-                            </button>
-                        </form>
                     </div>
                 </form>
             </div>

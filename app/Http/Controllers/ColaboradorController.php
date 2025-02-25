@@ -35,40 +35,52 @@ class ColaboradorController extends Controller
         return redirect()->route('colaboradores.index')->with('success', 'Colaborador criado com sucesso!');
     }
 
-    public function edit($colaborador) // Altere $colaboradore para $colaborador
+    public function edit($id)
     {
-        $colaborador = Colaborador::findOrFail($colaborador);  // Buscar o colaborador no banco de dados
-        $unidades = Unidade::all(); // Buscar as unidades, caso necessário
-        return view('colaboradores.edit', compact('colaborador', 'unidades'));  // Passar para a view
+        $colaborador = Colaborador::findOrFail($id);
+        $unidades = Unidade::all();
+        return view('colaboradores.edit', compact('colaborador', 'unidades'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Buscar o colaborador pelo ID
+        $colaborador = Colaborador::findOrFail($id);
+    
+        // Validar os dados antes da atualização
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('colaboradores', 'email')->ignore($colaborador->id),
+            ],
+            'cpf' => [
+                'required',
+                'string',
+                'max:14',
+                Rule::unique('colaboradores', 'cpf')->ignore($colaborador->id),
+            ],
+            'unidade_id' => 'required|exists:unidades,id',
+        ]);
+    
+        // Atualizar os dados do colaborador
+        $colaborador->update($validated);
+    
+        // Redirecionar com mensagem de sucesso
+        return redirect()->route('colaboradores.index')->with('success', 'Colaborador atualizado com sucesso!');
     }
     
 
+    public function destroy($id)
+    {
+        $colaborador = Colaborador::find($id);
 
+        if ($colaborador) {
+            $colaborador->delete();
+            return redirect()->route('colaboradores.index')->with('success', 'Colaborador excluído com sucesso.');
+        }
 
-    public function update(Request $request, Colaborador $colaborador)
-{
-    // Garantir que o 'unidade_id' não seja vazio
-    $validated = $request->validate([
-        'nome' => 'required|string|max:255',
-        'email' => Rule::unique('colaboradores')->ignore($colaborador->id),
-        'cpf' => Rule::unique('colaboradores')->ignore($colaborador->id),
-        'unidade_id' => 'required|exists:unidades,id',  // Mantenha a validação obrigatória
-    ]);
-
-    $colaborador->update($validated);
-
-    return redirect()->route('colaboradores.index')->with('success', 'Colaborador atualizado com sucesso!');
-}
-
-
-    public function destroy(Colaborador $colaborador)
-{
-    if ($colaborador) {
-        $colaborador->forceDelete(); // 🔥 Isso remove do banco definitivamente
-        return redirect()->route('colaboradores.index')->with('success', 'Colaborador excluído permanentemente.');
+        return redirect()->route('colaboradores.index')->with('error', 'Colaborador não encontrado.');
     }
-
-    return redirect()->route('colaboradores.index')->with('error', 'Colaborador não encontrado.');
-}
-
 }
